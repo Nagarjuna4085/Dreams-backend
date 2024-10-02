@@ -28,12 +28,12 @@ jobs:
 
     - name: Copy files to EC2
       run: |
-        scp -r -o StrictHostKeyChecking=no ./* ec2-user@3.86.183.72:/home/ec2-user/Dreams-backend/
+        rsync -av --exclude='node_modules' -e "ssh -o StrictHostKeyChecking=no" . ec2-user@3.86.183.72:/home/ec2-user/Dreams-backend/
 
     - name: SSH and Deploy
       run: |
         ssh -o StrictHostKeyChecking=no ec2-user@3.86.183.72 <<EOF
         cd /home/ec2-user/Dreams-backend
-        npm install
+        npm install --production
         pm2 restart server.js
         EOF
