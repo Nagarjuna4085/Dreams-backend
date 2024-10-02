@@ -13,14 +13,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-
-    - name: Install dependencies
-      run: npm install
-
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
@@ -28,11 +20,11 @@ jobs:
 
     - name: Copy files to EC2
       run: |
-        rsync -av --exclude='node_modules' -e "ssh -o StrictHostKeyChecking=no" . ec2-user@3.86.183.72:/home/ec2-user/Dreams-backend/
+        scp -r -o StrictHostKeyChecking=no ./* ec2-user@3.86.183.72:/home/ec2-user/Dreams-backend/
 
     - name: SSH and Deploy
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@3.86.183.72 <<EOF
+        ssh -t -o StrictHostKeyChecking=no ec2-user@3.86.183.72 <<EOF
         cd /home/ec2-user/Dreams-backend
         npm install --production
         pm2 restart server.js
