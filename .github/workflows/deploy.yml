@@ -24,8 +24,8 @@ jobs:
 
     - name: SSH and Deploy
       run: |
-        ssh -t -o StrictHostKeyChecking=no ec2-user@3.86.183.72 <<EOF
+        ssh -o StrictHostKeyChecking=no ec2-user@3.86.183.72 <<EOF
         cd /home/ec2-user/Dreams-backend
-        npm install --production
+        npm install --omit=dev
         pm2 restart server.js
         EOF
