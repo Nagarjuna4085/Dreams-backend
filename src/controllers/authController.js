@@ -3,6 +3,17 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { secret, expiresIn } from '../config/jwtConfig.js';
 
+
+//testing
+export const sendHi = ()=>{
+  try {
+    res.status(201).json({ greeting :"Helllo", user: { name: "test", username, "test@gmail.com" } });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 // User Sign Up
 export const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
