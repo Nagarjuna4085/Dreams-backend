@@ -10,7 +10,7 @@ export const sendHi = ()=>{
     res.status(201).json({ greeting :"Helllo", user: { name: "test", username, "test@gmail.com" } });
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ messagesssssss: error.message });
   }
 }
 
