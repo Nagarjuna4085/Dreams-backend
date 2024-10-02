@@ -25,7 +25,7 @@ jobs:
     - name: SSH and Deploy
       run: |
         ssh -o StrictHostKeyChecking=no ec2-user@3.86.183.72 <<EOF
-        cd /home/ec2-user/Dreams-backend
+        cd /home/ec2-user/Dreams-backend/src
         npm install --omit=dev
         pm2 start server.js --name Dreams-backend --env MONGO_URI="mongodb+srv://dream:dream123@cluster0.oynhj.mongodb.net/Dreams" --env JWT_SECRET="your_jwt_secret_key" --env PORT="5000" --update-env
         EOF
