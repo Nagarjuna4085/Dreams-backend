@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -16,6 +15,52 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  fullName: {
+    type: String,
+    default: '', // Optional field for full name
+  },
+  bio: {
+    type: String,
+    default: '', // Optional field for user biography
+  },
+  profilePicture: {
+    type: String,
+    default: '', // Optional field for profile picture URL
+  },
+  website: {
+    type: String,
+    default: '', // Optional field for personal website
+  },
+  location: {
+    type: String,
+    default: '', // Optional field for user location
+  },
+  language: {
+    type: String,
+    default: 'English', // Default language
+  },
+  theme: {
+    type: String,
+    enum: ['light', 'dark'], // Allowed themes
+    default: 'light', // Default theme
+  },
+  socialLinks: {
+    twitter: { type: String, default: '' }, // Optional link to Twitter
+    instagram: { type: String, default: '' }, // Optional link to Instagram
+    linkedin: { type: String, default: '' }, // Optional link to LinkedIn
+  },
+  accountCreated: {
+    type: Date,
+    default: Date.now, // Automatically set creation date
+  },
+  lastLogin: {
+    type: Date,
+    default: Date.now, // Set last login date
+  },
+  notificationsEnabled: {
+    type: Boolean,
+    default: true, // Default to receiving notifications
   },
 });
 
